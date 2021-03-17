@@ -14,9 +14,15 @@ export const Home = () => {
 	return (
 		<div className="text-center mt-5">
 			<h1>Home</h1>
-			{planets.map((item, index) => {
-				return <Card key={index} />;
-			})}
+			<div className="row">
+				{planets.map((item, index) => {
+					return (
+						<div className="col" key={index}>
+							<Card key={index} nombre={item.nombre} superficie={item.superficie} />
+						</div>
+					);
+				})}
+			</div>
 		</div>
 	);
 };
