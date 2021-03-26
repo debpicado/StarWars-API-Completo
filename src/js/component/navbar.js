@@ -8,7 +8,7 @@ import { Context } from "../store/appContext";
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	return (
-		<div className="container  bg-light">
+		<div className="container bg-light sticky-top">
 			<nav className="navbar navbar-light mb-3">
 				<Link className="col-6 col-md-2" to="/">
 					<img
@@ -21,29 +21,30 @@ export const Navbar = () => {
 						<button
 							className="btn btn-primary dropdown-toggle"
 							type="button"
-							id="dropdownMenuButton1"
-							data-bs-toggle="dropdown"
+							id="dropdownMenuButton"
+							data-toggle="dropdown"
+							aria-haspopup="true"
 							aria-expanded="false">
-							Favoritos
-							<span className="badge bg-secondary">{store.favorites.length}</span>
+							Favorites <span className="badge badge-light m-2">{store.favorites.length}</span>
 						</button>
-						<ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							<li>
-								<a className="dropdown-item" href="#">
-									Action
-								</a>
-							</li>
-							<li>
-								<a className="dropdown-item" href="#">
-									Another action
-								</a>
-							</li>
-							<li>
-								<a className="dropdown-item" href="#">
-									Something else here
-								</a>
-							</li>
-						</ul>
+						<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							{store.favorites.map((item, index) => {
+								return (
+									<div key={index} className="dropdown-item">
+										<div className="row">
+											<div className="col-9">{item.name}</div>
+											<div className="col-2">
+												<a
+													className="badge badge-danger text-white"
+													onClick={() => actions.deleteFavorite(index)}>
+													<i className="far fa-trash-alt" />
+												</a>
+											</div>
+										</div>
+									</div>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			</nav>

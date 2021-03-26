@@ -9,7 +9,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
+		<div className="container mb-5 pb-5">
 			<div className="col-12">
 				<h1 className="text-danger">Personajes</h1>
 			</div>
@@ -23,6 +23,7 @@ export const Home = () => {
 								gender={item.gender}
 								hair_color={item.hair_color}
 								eye_color={item.eye_color}
+								id={index}
 							/>
 						</div>
 					);
@@ -42,6 +43,7 @@ export const Home = () => {
 								diameter={item.diameter}
 								population={item.population}
 								terrain={item.terrain}
+								id={index}
 							/>
 						</div>
 					);
